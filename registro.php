@@ -7,16 +7,17 @@ $correo = $_POST['correo'];
 $ci = $_POST['ci'];
 $usuario = $_POST['usuario'];
 $clave = $_POST['pass'];
+$rol = $_POST['rol'];
 
 
-$sql = "INSERT INTO usuario (nombre, apellido, correo, ci, usuario, clave) VALUES ('$nombre', '$apellido', '$correo', '$ci', '$usuario', '$clave')";
+$sql = "INSERT INTO usuario (nombre, apellido, correo, ci, usuario, clave, rol) VALUES ('$nombre', '$apellido', '$correo', '$ci', '$usuario', '$clave','$rol')";
 $query= mysqli_query($conexion,$sql);
 
 echo '<script>
 
 alert("Registrado Correctamente");
 
-location.href="indexs.php";
+location.href="index.php";
 
 </script>'
 

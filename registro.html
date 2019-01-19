@@ -1,82 +1,93 @@
-
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
+
 <head>
-	<title>registro</title>
-	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
-	<script src="librerias/jquery-3.2.1.min.js"></script>
-	<script src="js/funciones.js"></script>
+    <title>registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css"> -->
+    <script src="librerias/jquery-3.2.1.min.js"></script>
+    <script src="js/funciones.js"></script>
 
 </head>
+
 <body>
-	<br><br><br>
-	<div class="container"> 
-		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4">
-				<div class="panel panel-danger">
-					<div class="panel panel-heading">Registrar Administrador</div>
-					<div class="panel panel-body">
-						<form id="frmRegistro" method="post" action="registro.php">
-							<label>Nombre</label>
-							<input type="text" class="form-control input-sm" name="nombre" id="nombre">
-							<label>Apellido</label>
-							<input type="text" class="form-control input-sm" name="apellido" id="apellido">
-							
-							<label>Correo</label>
-							<input type="text" class="form-control input-sm" name="correo" id="correo">
-							
-							<label>Cedula</label>
-							<input type="text" class="form-control input-sm" name="ci" id="cedula">
-							
-							<label>Usuario</label>
-							<input type="text" class="form-control input-sm" name="usuario" id="usuario">
-							<label>Password</label>
-							<input type="text" class="form-control input-sm" name="pass" id="password">
-							<p></p>
-							<button type="submit" id="registro"><span class="btn btn-primary" >Registrar</span></button>
-							<a href="indexs.php" class="btn btn-default">Regresar login</a>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-4"></div>
-		</div>
-	</div>
+    <br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="panel panel-danger">
+                    <div class="panel panel-heading text-center display-4">Registrar Usuario</div>
+                    <div class="panel panel-body">
+                        <form id="frmRegistro" method="post" action="registro.php">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control input-sm" name="nombre" id="nombre">
+                            <label>Apellido</label>
+                            <input type="text" class="form-control input-sm" name="apellido" id="apellido">
+
+                            <label>Correo</label>
+                            <input type="email" class="form-control input-sm" name="correo" id="correo">
+
+                            <label>Cedula</label>
+                            <input type="text" class="form-control input-sm" name="ci" id="cedula">
+
+                            <label>Usuario</label>
+                            <input type="text" class="form-control input-sm" name="usuario" id="usuario">
+                            <label>Contraseña</label>
+                            <input type="text" class="form-control input-sm" name="pass" id="password">
+                            <label>Rol</label>
+                            <select type="text" required="required" class="form-control input-sm" name="rol" id="rol">
+								<option value="">Seleccione un rol</option>
+								<option value="Supervisor">Supervisor</option>
+								<option value="Trabajador">Trabajador</option>
+							</select>
+                            <p></p>
+                            <input type="submit" id="registro" class="btn btn-primary" name="Registrar" value="Registrar">
+                            <a href="index.php" class="btn btn-secondary">Volver</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
 </body>
 
 </html>
 
-<script >
-	$(document).ready(function(){
-		
+<script>
+    $(document).ready(function() {
 
-		$('#registro').click(function(e){
-			
-			
-			
-			e.preventDefault();
-			
-			
-			var n = $('#nombre').val();
-			
-			
-			
-			
-			if ($('#nombre').val() == '' || $('#apellido').val() == '' || $('#correo').val() == ''|| $('#cedula').val() == '' || $('#usuario').val() == '' || $('#password').val() == '')
-			
-			
-			{
-				
-				
-				alert("Debes llenar todos los campos!!");
-				
-				break;
-			}
 
-			
-			
-		});
-	});
+        $('#registro').click(function(e) {
+
+
+
+            e.preventDefault();
+
+
+            var n = $('#nombre').val();
+
+
+
+
+            if ($('#nombre').val() == '' || $('#apellido').val() == '' || $('#correo').val() == '' ||
+                $('#cedula').val() == '' || $('#usuario').val() == '' || $('#password').val() == '' ||
+                $('#rol option:selected').val() == '')
+
+
+            {
+
+
+                alert("Debes llenar todos los campos!!");
+
+                break;
+            }
+
+
+
+        });
+    });
 </script>
-
