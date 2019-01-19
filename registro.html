@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>registro</title>
+	<link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
+	<script src="librerias/jquery-3.2.1.min.js"></script>
+	<script src="js/funciones.js"></script>
+
+</head>
+<body>
+	<br><br><br>
+	<div class="container"> 
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<div class="panel panel-danger">
+					<div class="panel panel-heading">Registrar Administrador</div>
+					<div class="panel panel-body">
+						<form id="frmRegistro" method="post" action="registro.php">
+							<label>Nombre</label>
+							<input type="text" class="form-control input-sm" name="nombre" id="nombre">
+							<label>Apellido</label>
+							<input type="text" class="form-control input-sm" name="apellido" id="apellido">
+							
+							<label>Correo</label>
+							<input type="text" class="form-control input-sm" name="correo" id="correo">
+							
+							<label>Cedula</label>
+							<input type="text" class="form-control input-sm" name="ci" id="cedula">
+							
+							<label>Usuario</label>
+							<input type="text" class="form-control input-sm" name="usuario" id="usuario">
+							<label>Password</label>
+							<input type="text" class="form-control input-sm" name="pass" id="password">
+							<p></p>
+							<button type="submit" id="registro"><span class="btn btn-primary" >Registrar</span></button>
+							<a href="indexs.php" class="btn btn-default">Regresar login</a>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<script >
+	$(document).ready(function(){
+		
+
+		$('#registro').click(function(e){
+			
+			
+			
+			e.preventDefault();
+			
+			
+			var n = $('#nombre').val();
+			
+			
+			
+			
+			if ($('#nombre').val() == '' || $('#apellido').val() == '' || $('#correo').val() == ''|| $('#cedula').val() == '' || $('#usuario').val() == '' || $('#password').val() == '')
+			
+			
+			{
+				
+				
+				alert("Debes llenar todos los campos!!");
+				
+				break;
+			}
+
+			
+			
+		});
+	});
+</script>
+
