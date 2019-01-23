@@ -12,19 +12,22 @@ include("conexion.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Supervisor</title>
-    
+
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jquery.bxslider.css">
     <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
- 
+
     <link href="css/prettyPhoto.css" rel="stylesheet" />
-   
+
     <link href="css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
 </head>
 
 
@@ -78,8 +81,8 @@ include("conexion.php");
     <div class="slider">
         <div class="img-fluid">
             <ul class="bxslider">
-                <li><img src="images/4.jpg" alt="" style="width: 100%; max-height: 60vh;" /></li>
-                <li><img src="images/1.jpg" alt="" style="width: 100%;max-height:60vh;" /></li>
+                <li><img src="images/4.jpg" alt="" style="width: 100%; max-height: 50vh;" /></li>
+                <li><img src="images/1.jpg" alt="" style="width: 100%;max-height:50vh;" /></li>
             </ul>
         </div>
     </div>
@@ -93,7 +96,16 @@ include("conexion.php");
     </div>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
     <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/fancybox/jquery.fancybox.pack.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
@@ -101,15 +113,18 @@ include("conexion.php");
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/functions.js"></script>
-    <script src="js/ajax.popper.min.js"></script>
-    <script src="js/all.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script>
+    wow = new WOW({
+
+        })
+        .init();
+    </script>
+
+
+    <script>
+    $('.dropdown-toggle').dropdown();
+    </script>
 </body>
 
 
@@ -124,17 +139,19 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $('a[href^="#"]').click(function() {
-    var destino = $(this.hash);
-    if (destino.length == 0) {
-      destino = $('a[name="' + this.hash.substr(1) + '"]');
-    }
-    if (destino.length == 0) {
-      destino = $('html');
-    }
-    $('html, body').animate({ scrollTop: destino.offset().top }, 2500);
-    return false;
-  });
+    $('a[href^="#"]').click(function() {
+        var destino = $(this.hash);
+        if (destino.length == 0) {
+            destino = $('a[name="' + this.hash.substr(1) + '"]');
+        }
+        if (destino.length == 0) {
+            destino = $('html');
+        }
+        $('html, body').animate({
+            scrollTop: destino.offset().top
+        }, 2500);
+        return false;
+    });
 });
 </script>
 

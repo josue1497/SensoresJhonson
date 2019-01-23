@@ -81,7 +81,7 @@ include("conexion.php"); ?>
             }
         },
         tooltip: {
-            valueSuffix: ' millions'
+            valueSuffix: '°'
         },
         plotOptions: {
             bar: {

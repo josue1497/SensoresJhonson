@@ -130,14 +130,15 @@ include("conexion.php");
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/functions.js"></script>
     <script>
-    </script>
-
-
+    
     wow = new WOW(
     {
 
     })
     .init();
+    </script>
+
+
 
 
 </body>

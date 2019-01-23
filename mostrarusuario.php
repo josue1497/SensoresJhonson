@@ -23,8 +23,8 @@ include("conexion.php");
         <script>
             // id=ci=nombre=apellido=correo=usuario=password=rol='';
         </script>
-        <div class="text-center display-4">
-            <h1>Administracion de Usuarios</h1>
+        <div >
+            <h1 class="text-center display-1">Administracion de Usuarios</h1>
         </div>
         <a id="agregar" data-toggle="modal" data-target="#modalRecord" class="btn btn-success text-light">Agregar</a><br><br>
         <table id="usersTable" class="table p-3">
