@@ -13,13 +13,7 @@ $rol = $_POST['rol'];
 $sql = "INSERT INTO usuario (nombre, apellido, correo, ci, usuario, clave, rol) VALUES ('$nombre', '$apellido', '$correo', '$ci', '$usuario', '$clave','$rol')";
 $query= mysqli_query($conexion,$sql);
 
-echo '<script>
-
-alert("Registrado Correctamente");
-
-location.href="index.php";
-
-</script>'
+echo $query;
 
 
 ?>

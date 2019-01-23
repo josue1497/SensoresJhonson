@@ -13,18 +13,16 @@ $resultado=mysqli_query($conexion,$consulta);
 $filas=mysqli_num_rows($resultado);
 $rel=mysqli_fetch_array($resultado);
 
-
-
-if($usuario == "administrador" && $pass == "1234"){
-	$_SESSION['usuario1']= $rel['nombre'];
-	header("location:index.php");
-	exit;
-}
-
-
 if($filas>0){
+	$_SESSION['user_id']=$rel['id'];
 	 $_SESSION['usuario1'] = $rel['nombre'].' '.$rel['apellido'];
-    header("location:vistatrabajador.php");
+
+	 if($rel['rol']==='Supervisor'){
+		header("location:vistasupervisor.php");
+	}else{ 
+		 header("location:vistatrabajador.php");
+		}
+  
 }
 else{ echo 
     '<script> alert("Usuario Invalido o contraseña invalida"); 

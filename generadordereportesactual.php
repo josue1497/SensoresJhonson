@@ -2,17 +2,16 @@
 include("conexion.php");
 
 
-$fecha = date("Y-m-d");
 $temperatura = $_POST['temperatura'];
-$humedad = 15;
-$nombre = $_POST['nombre'];
+$humedad = $_POST['humedad'];;
+$user_id = $_POST['user_id'];
 $comentario = $_POST['comentario'];
 $nivel = $_POST['nivel'];
 
 
-$sql= "INSERT INTO reportes (fecha, temperatura, humedad, nombre, comentario, estatus) VALUES ('$fecha', '$temperatura', '$humedad', '$nombre', '$comentario', '$nivel')";
+$sql= "INSERT INTO reportes (temperatura, humedad, user_id, comentario, estatus) VALUES ('$temperatura', '$humedad', '$user_id', '$comentario', '$nivel')";
 $query = mysqli_query($conexion,$sql);
 
-
+echo $query;
 
 ?>

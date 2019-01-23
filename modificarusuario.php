@@ -1,9 +1,30 @@
 <?php
 
 include("conexion.php"); 
+$input = filter_input_array(INPUT_POST);
+if ($input['action'] == 'edit') {   
+    $update_field='';
+    if(isset($input['nombre'])) {
+        $update_field.= "nombre='".$input['nombre']."'";
+    } else if(isset($input['ci'])) {
+        $update_field.= "ci='".$input['ci']."'";
+    } else if(isset($input['apellido'])) {
+        $update_field.= "apellido='".$input['apellido']."'";
+    } else if(isset($input['correo'])) {
+        $update_field.= "correo='".$input['correo']."'";
+    } else if(isset($input['usuario'])) {
+        $update_field.= "usuario='".$input['usuario']."'";
+    }  else if(isset($input['clave'])) {
+        $update_field.= "clave='".$input['clave']."'";
+    }  
+    if($update_field && $input['id']) {
+        $sql_query = "UPDATE libro SET $update_field WHERE id='" . $input['id'] . "'";  
+        mysqli_query($conn, $sql_query) or die("database error:". mysqli_error($conn));     
+    }
+}
 ?>
 
-
+<!-- 
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -62,13 +83,13 @@ include("conexion.php");
             
              <?php
             
-$id = $_POST['id'];   
+// $id = $_POST['id'];   
          
-            echo $id;
+//             echo $id;
             
- $sql = "SELECT * FROM usuario WHERE id = '$id'";
- $query = mysqli_query($conexion,$sql);
- $row = mysqli_fetch_array($query);
+//  $sql = "SELECT * FROM usuario WHERE id = '$id'";
+//  $query = mysqli_query($conexion,$sql);
+//  $row = mysqli_fetch_array($query);
   
 	 
 	?>
@@ -100,9 +121,9 @@ $id = $_POST['id'];
             
         </form>
         
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->	
+     jQuery (necessary for Bootstrap's JavaScript plugins) 	
     <script src="js/jquery-2.1.1.min.js"></script>	
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Include all compiled plugins (below), or include individual files as needed 
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
@@ -123,4 +144,4 @@ $id = $_POST['id'];
 
 
 
-
+ -->

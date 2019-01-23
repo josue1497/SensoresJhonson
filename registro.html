@@ -21,7 +21,7 @@
                 <div class="panel panel-danger">
                     <div class="panel panel-heading text-center display-4">Registrar Usuario</div>
                     <div class="panel panel-body">
-                        <form id="frmRegistro" method="post" action="registro.php">
+                        <form id="insertForm" method="post">
                             <label>Nombre</label>
                             <input type="text" class="form-control input-sm" name="nombre" id="nombre">
                             <label>Apellido</label>
@@ -36,15 +36,19 @@
                             <label>Usuario</label>
                             <input type="text" class="form-control input-sm" name="usuario" id="usuario">
                             <label>Contraseña</label>
-                            <input type="text" class="form-control input-sm" name="pass" id="password">
+                            <input type="password" class="form-control input-sm" name="pass" id="password">
                             <label>Rol</label>
                             <select type="text" required="required" class="form-control input-sm" name="rol" id="rol">
 								<option value="">Seleccione un rol</option>
 								<option value="Supervisor">Supervisor</option>
 								<option value="Trabajador">Trabajador</option>
-							</select>
+                            </select>
+                            <label>Supervisor Responsable</label>
+                            <input type="text" class="form-control input-sm" name="superuser" id="superuser">
+                            <label>Contraseña Supervisor</label>
+                            <input type="password" class="form-control input-sm" name="superpass" id="superpass">
                             <p></p>
-                            <input type="submit" id="registro" class="btn btn-primary" name="Registrar" value="Registrar">
+                            <input type="submit" id="registro" class="btn btn-primary" name="Registrar" value="Registrar" onclick="insertNewRecord();">
                             <a href="index.php" class="btn btn-secondary">Volver</a>
                         </form>
                     </div>
