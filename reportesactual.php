@@ -110,9 +110,9 @@ include("conexion.php"); ?>
 
 
                 <?php
-            $sql = "SELECT * FROM valores order by fecha asc";
-        $query = mysqli_query($conexion,$sql);
-        while ($row = mysqli_fetch_array($query)){
+            $sql = "SELECT * FROM valores where date(fecha)=current_date order by fecha asc";
+        $queryHumedad = mysqli_query($conexion,$sql);
+        while ($row = mysqli_fetch_array($queryHumedad)){
         ?>
 
 
@@ -126,14 +126,16 @@ include("conexion.php"); ?>
             data: [
 
                 <?php
-            $sql = "SELECT * FROM valores order by fecha asc";
-        $query = mysqli_query($conexion,$sql);
-        while ($row = mysqli_fetch_array($query)){
+            $sql = "SELECT * FROM valores where date(fecha)=current_date order by fecha asc";
+        $queryTemperatura = mysqli_query($conexion,$sql);
+        while ($row = mysqli_fetch_array($queryTemperatura)){
         ?>
 
                 [<?php echo $row['temperatura']; ?>],
 
-                <?php } ?>
+                <?php  
+                
+                } ?>
 
             ]
         }]
@@ -141,9 +143,22 @@ include("conexion.php"); ?>
     </script>
     <br>
 
+    <?php
+    $rowTemperatura=$rowHumedad='';
+    $sql = "SELECT * FROM valores where date(fecha)=current_date order by fecha asc";
+    $queryTemperatura = mysqli_query($conexion,$sql);
+     while ($row = mysqli_fetch_array($queryTemperatura)){
+        $rowTemperatura.=$row['temperatura'].",";
+     }
+     $queryTemperatura = mysqli_query($conexion,$sql);
+     while ($row = mysqli_fetch_array($queryTemperatura)){
+        $rowHumedad.=$row['humedad'].",";
+     }
+       
+    ?>
 
-
-    <form method="post" action="" id="formReport" onsubmit="enviarDatos($(#formReport));">
+    <h1 class="text-center display-4">Mencione Sus lecturas</h1>
+    <form method="post" id="formReport">
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
@@ -164,15 +179,15 @@ include("conexion.php"); ?>
             <div class="col-3">
                 <div class="d-flex flex-column">
                     <div class="p-2">
-                        <div class="form-group">
+                        <div class="forñm-group">
                             <label for="temperatura">Temperatura</label>
-                            <input type="text" name="temperatura" class="form-control" value="<?php echo $row['temperatura']; ?>">
+                            <input type="text" name="temperatura" class="form-control" readonly value="<?php echo $rowTemperatura?>">
                         </div>
                     </div>
                     <div class="p-2">
                         <div class="form-group">
                             <label for="humedad">Humedad</label>
-                            <input type="text" name="humedad" class="form-control" value="<?php echo $row['temperatura']; ?>">
+                            <input type="text" name="humedad" class="form-control" readonly value="<?php echo $rowHumedad ?>">
                         </div>
 
                     </div>
@@ -180,16 +195,44 @@ include("conexion.php"); ?>
 
             </div>
             <div class="col-3">
-                <div class="form-group">
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                <div class="d-flex flex-column">
+                    <div class="form-group">
+                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                        <input type="submit" id="btnEnviar" value="Registrar" class="btn btn-primary " />
+                    </div>
+                    <div class="form-group">
+                    <a href="vistatrabajador.php" class="btn btn-secondary px-4">Volver</a>
+                    </div>
                 </div>
             </div>
         </div>
 
     </form>
 
-
+    <script>
+    $(document).ready(function() {
+        $("#formReport").bind("submit", function() {
+            // Capturamnos el boton de envío
+            var btnEnviar = $("#btnEnviar");
+            $.ajax({
+                type: "POST",
+                url: "generadordereportesactual.php",
+                data: $("#formReport").serialize(),
+                success: function(r) {
+                    if (r == 1) {
+                        alert('Registrado con Exito.');
+                        $('input[type=text]').val("");
+                        $('textarea').val("");
+                    } else {
+                        alert('Ha ocurrido un error.');
+                    }
+                }
+            });
+            // Nos permite cancelar el envio del formulario
+            return false;
+        });
+    });
+    </script>
 
 </body>
 
