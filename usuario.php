@@ -14,8 +14,9 @@ $filas=mysqli_num_rows($resultado);
 $rel=mysqli_fetch_array($resultado);
 
 if($filas>0){
+	$_SESSION['user_role'] = $rel['rol'];
 	$_SESSION['user_id']=$rel['id'];
-	 $_SESSION['usuario1'] = $rel['nombre'].' '.$rel['apellido'];
+	$_SESSION['usuario1'] = $rel['nombre'].' '.$rel['apellido'];
 
 	 if($rel['rol']==='Supervisor'){
 		header("location:vistasupervisor.php");

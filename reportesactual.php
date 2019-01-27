@@ -6,7 +6,7 @@ include("conexion.php"); ?>
 <html lang="en">
 
 <head>
-    <title>HierroferralVyT</title>
+    <title>Reportes</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -148,11 +148,11 @@ include("conexion.php"); ?>
     $sql = "SELECT * FROM valores where date(fecha)=current_date order by fecha asc";
     $queryTemperatura = mysqli_query($conexion,$sql);
      while ($row = mysqli_fetch_array($queryTemperatura)){
-        $rowTemperatura.=$row['temperatura'].",";
+        $rowTemperatura.='['.$row['temperatura']."],";
      }
      $queryTemperatura = mysqli_query($conexion,$sql);
      while ($row = mysqli_fetch_array($queryTemperatura)){
-        $rowHumedad.=$row['humedad'].",";
+        $rowHumedad.='['.$row['humedad']."],";
      }
        
     ?>
@@ -173,7 +173,7 @@ include("conexion.php"); ?>
             <div class="col-3">
                 <div class="form-group">
                     <label for="comentario">Comentario</label>
-                    <textarea name="comentario" class="form-control"> </textarea>
+                    <textarea name="comentario" class="form-control" required="required"> </textarea>
                 </div>
             </div>
             <div class="col-3">
@@ -198,10 +198,10 @@ include("conexion.php"); ?>
                 <div class="d-flex flex-column">
                     <div class="form-group">
                         <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-                        <input type="submit" id="btnEnviar" value="Registrar" class="btn btn-primary " />
+                        <input type="submit" id="btnEnviar" value="Crear Reporte" class="btn btn-primary " />
                     </div>
                     <div class="form-group">
-                    <a href="vistatrabajador.php" class="btn btn-secondary px-4">Volver</a>
+                    <a href="<?php echo strcmp(trim($_SESSION['user_role']), 'Trabajador')==0? 'vistatrabajador.php':  'vistasupervisor.php'; ?>" class="btn btn-secondary">Volver</a>
                     </div>
                 </div>
             </div>

@@ -157,3 +157,15 @@ function enviarDatos(form){
         });
         return false;
   }
+
+  function goToVerLecturas(element){
+   nameR=element.parentNode.parentNode.childNodes[1].innerText;
+   commentR=element.parentNode.parentNode.childNodes[7].innerText;
+   dateR=element.parentNode.parentNode.childNodes[9].innerText;
+   statR=element.parentNode.parentNode.childNodes[11].innerText;
+   arrayTemperatura=element.parentNode.parentNode.childNodes[3].value.trim();
+   arrayHumedad=element.parentNode.parentNode.childNodes[5].value.trim();
+   id=element.parentNode.parentNode.id;
+
+   window.location='ver_lecturas.php?nombre='+nameR+'&comentario='+commentR+'&fecha='+dateR+'&estatus='+statR+'&recordid='+id;
+}

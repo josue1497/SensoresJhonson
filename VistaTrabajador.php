@@ -2,19 +2,16 @@
 session_start();
 include("conexion.php");
 ?>
-
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Warehouse control</title>
+    <title>Trabajador <?php echo $_SESSION['usuario1']?></title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
+
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jquery.bxslider.css">
@@ -23,13 +20,11 @@ include("conexion.php");
     <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
     <link href="css/prettyPhoto.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
 
 </head>
@@ -49,6 +44,7 @@ include("conexion.php");
                             <?php echo $_SESSION['usuario1'];  ?>
                         </h4>
                     </a> -->
+
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
                     </ul>
@@ -56,8 +52,19 @@ include("conexion.php");
                         <div class="navbar-collapse collapse">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation"><a href="vistatrabajador.php" class="active">Inicio</a></li>
-                                <li role="presentation"><a href="reportes.html">Indicadores de Temperatura</a></li>
-                                <li role="Presentation"><a href="reportesactual.php">Reportes</a>
+                                <!-- <li role="presentation"><a href="reportes.html">Indicadores de Temperatura</a></li> -->
+                                <!-- <li role="Presentation"><a href="reportesactual.php">Reportes</a> -->
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Reportes
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="reportesactual.php">Crear Reportes</a>
+                                        <a class="dropdown-item" href="#mostrar" id="reporteTrabajadores">Mis
+                                            Reportes</a>
+                                    </div>
+                                </li>
                                 <li class="li"> <a href="cerrarsesion.php">Cerrar Sesión </a> </li>
                             </ul>
                         </div>
@@ -65,36 +72,7 @@ include("conexion.php");
                 </div>
             </nav>
         </div>
-        <!-- <nav class="navbar navbar-default navbar-static-top" role="navigation">
-			<div class="navigation">
-				<div class="container">					
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse.collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<div class="navbar-brand text-uppercase">
-						<a id="usuario"><h4> <?php echo $_SESSION['usuario1'];  ?> </h4>   </a>
-						</div>
-					</div>
-					
-					<div class="navbar-collapse collapse">							
-						<div class="menu">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation"><a href="vistatrabajador.php" class="active">Inicio</a></li>
-								<li role="presentation"><a href="vistatraajador2.html">Indicadores de Temperatura</a></li>
-								<li role="Presentation"><a href="reportesactual.php">Reportes</a>
-								<li class="li"> <a href="cerrarsesion.php">Cerrar Sesión </a>  </li> 
-							</ul>
-						</div>
-					</div>						
-				</div>
-			</div>	
-		</nav>		 -->
     </header>
-
     <div class="slider">
         <div class="img-fluid">
             <ul class="bxslider">
@@ -113,6 +91,8 @@ include("conexion.php");
                 <h2>Hacemos Productos de Calidad</h2>
             </div>
         </div>
+        <div id="mostrar">
+        </div>
     </div>
 
 
@@ -129,17 +109,27 @@ include("conexion.php");
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/functions.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
     <script>
-    
-    wow = new WOW(
-    {
+    wow = new WOW({
 
-    })
-    .init();
+        })
+        .init();
     </script>
 
+    <script>
+    $('.dropdown-toggle').dropdown();
+    </script>
+    <script>
+    $(document).ready(function() {
 
-
+        $('#reporteTrabajadores').click(function(e) {
+            e.preventDefault();
+            $('#mostrar').empty();
+            $('#mostrar').load("reportes_trabajadores.php");
+        });
+    });
+    </script>
 
 </body>
 
@@ -164,16 +154,5 @@ $(document).ready(function() {
         $('.li').addClass('li');
 
     });
-
-
-
-
-
-
-
-
-
-
-
 });
 </script>

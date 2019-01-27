@@ -22,10 +22,10 @@ include("conexion.php");
     <link href="css/prettyPhoto.css" rel="stylesheet" />
 
     <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 
 </head>
@@ -35,7 +35,7 @@ include("conexion.php");
     <header>
 
         <div class="mb-5">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                     aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -55,16 +55,15 @@ include("conexion.php");
                             <div class="navbar-nav">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item"><a href="vistasupervisor.php" class="active">Inicio</a></li>
-                                    <li class="nav-item"><a href="reportes.php">Indicadores de Temperatura</a></li>
                                     <li class="nav-item dropdown">
-                                        <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
+                                        <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Reportes
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="reportes_trabajadores.php">Ver Reportes</a>
+                                            <a class="dropdown-item" href="#mostrar" id="reporteTrabajadores">Ver
+                                                Reportes</a>
                                             <a class="dropdown-item" href="reportesactual.php">Agregar Reportes</a>
-                                            <a class="dropdown-item" href="#">Modificar Reportes</a>
                                         </div>
                                     </li>
                                     <li class="nav-item"><a id="usuario1" href="#mostrar">Usuario</a></li>
@@ -89,6 +88,16 @@ include("conexion.php");
 
     <div class="container">
 
+        <div>
+            <div class="text-center">
+                <div class="wow bounceInDown" data-wow-offset="0" data-wow-delay="0.3s">
+                    <h3>Johnson & Johnson Venezuela</h3>
+                </div>
+                <div class="wow bounceInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                    <h2>Hacemos Productos de Calidad</h2>
+                </div>
+            </div>
+        </div>
         <div id="mostrar">
         </div>
     </div>
@@ -98,10 +107,12 @@ include("conexion.php");
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+    </script>
 
     <script src="js/jquery-2.1.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -136,6 +147,11 @@ $(document).ready(function() {
         $('#mostrar').empty();
         $('#mostrar').load("mostrarusuario.php");
     });
+    $('#reporteTrabajadores').click(function(e) {
+        e.preventDefault();
+        $('#mostrar').empty();
+        $('#mostrar').load("reportes_trabajadores.php");
+    });
 });
 
 $(document).ready(function() {
@@ -153,6 +169,8 @@ $(document).ready(function() {
         return false;
     });
 });
+
+wow = new WOW().init();
 </script>
 
 

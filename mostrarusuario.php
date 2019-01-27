@@ -20,9 +20,6 @@ include("conexion.php");
 
 <body>
     <div>
-        <script>
-            // id=ci=nombre=apellido=correo=usuario=password=rol='';
-        </script>
         <div >
             <h1 class="text-center display-1">Administracion de Usuarios</h1>
         </div>
