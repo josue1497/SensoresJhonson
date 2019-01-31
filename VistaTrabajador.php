@@ -39,11 +39,6 @@ include("conexion.php");
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <div class="logo" id="usuario"></div>
-                    <!-- <a class="navbar-brand text-uppercase" href="#" id="usuario">
-                        <h4>
-                            <?php echo $_SESSION['usuario1'];  ?>
-                        </h4>
-                    </a> -->
 
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
@@ -51,21 +46,23 @@ include("conexion.php");
                     <div class="form-inline my-2 my-lg-0">
                         <div class="navbar-collapse collapse">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation"><a href="vistatrabajador.php" class="active">Inicio</a></li>
-                                <!-- <li role="presentation"><a href="reportes.html">Indicadores de Temperatura</a></li> -->
-                                <!-- <li role="Presentation"><a href="reportesactual.php">Reportes</a> -->
-                                <li class="nav-item dropdown">
-                                    <a href="#" class="dropdown-toggle" id="navbarDropdownMenuLink"
+                                <li class="nav-link" role="presentation"><a class="text-danger"
+                                        href="vistatrabajador.php" class="active">Inicio</a></li>
+                                <li class="nav-link dropdown">
+                                    <a href="#" class="dropdown-toggle text-danger" id="navbarDropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Reportes
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="reportesactual.php">Crear Reportes</a>
-                                        <a class="dropdown-item" href="#mostrar" id="reporteTrabajadores">Mis
+                                        <a class="dropdown-item text-danger" href="reportesactual.php">Crear
+                                            Reportes</a>
+                                        <a class="dropdown-item text-danger" href="#mostrar"
+                                            id="reporteTrabajadores">Mis
                                             Reportes</a>
                                     </div>
                                 </li>
-                                <li class="li"> <a href="cerrarsesion.php">Cerrar Sesión </a> </li>
+                                <li class="nav-link"> <a class="text-danger" href="cerrarsesion.php">Cerrar Sesión </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -129,6 +126,23 @@ include("conexion.php");
             $('#mostrar').load("reportes_trabajadores.php");
         });
     });
+    $(document).ready(function() {
+    $('a[href^="#"]').click(function() {
+        var destino = $(this.hash);
+        if (destino.length == 0) {
+            destino = $('a[name="' + this.hash.substr(1) + '"]');
+        }
+        if (destino.length == 0) {
+            destino = $('html');
+        }
+        $('html, body').animate({
+            scrollTop: destino.offset().top
+        }, 2500);
+        return false;
+    });
+});
+
+wow = new WOW().init();
     </script>
 
 </body>

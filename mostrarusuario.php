@@ -40,7 +40,7 @@ include("conexion.php");
             <tbody>
                 <?php  
 
-    $sql = "SELECT * FROM usuario";
+    $sql = "SELECT * FROM usuario where activo='S'";
 
     $query = mysqli_query($conexion,$sql);       
 
@@ -127,6 +127,7 @@ include("conexion.php");
                                                 <select type="text" required="required" class="form-control input-sm"
                                                     name="rol" id="rol">
                                                     <option value="">Seleccione un rol</option>
+                                                    <option value="Administrador">Administrador</option>
                                                     <option value="Supervisor">Supervisor</option>
                                                     <option value="Trabajador">Trabajador</option>
                                                 </select>
@@ -189,6 +190,7 @@ include("conexion.php");
                                                 <select type="text" required="required" class="form-control input-sm"
                                                     name="rol" id="insertrol">
                                                     <option value="">Seleccione un rol</option>
+                                                    <option value="Administrador">Administrador</option>
                                                     <option value="Supervisor">Supervisor</option>
                                                     <option value="Trabajador">Trabajador</option>
                                                 </select>

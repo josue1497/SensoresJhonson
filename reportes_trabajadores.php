@@ -13,7 +13,7 @@ include("conexion.php");
             <th>Comentario</th>
             <th>Fecha</th>
             <th>Estatus</th>
-            <th>Lecturas</th>
+            <th></th>
         </tr>
     </thead>
 <tbody>
@@ -25,8 +25,8 @@ include("conexion.php");
       $rol=trim((string)$_SESSION['user_role']);
       $sql = "select R.id ,concat(u.nombre,' ' ,u.apellido) as nombre, r.temperatura,
 							r.humedad,r.comentario, r.fecha ,r.estatus 
-                            from reportes R inner join usuario U on (u.id=R.user_id) " ;
-        $where = strcmp($rol,'Supervisor')==0?"":" where u.id='$id'";
+                            from reportes R inner join usuario U on (u.id=R.user_id) where R.activo='S' " ;
+        $where = strcmp($rol,'Trabajador')==0?" and u.id='$id'":" ";
           $query = mysqli_query($conexion,$sql.$where);
       
     while($row = mysqli_fetch_array($query)){
@@ -49,7 +49,9 @@ include("conexion.php");
                 <?php echo $row['estatus']; ?>
             </td>
             <td>
-                <button class="btn btn-primary" name="<?php  echo $row['id']; ?>"" onclick="goToVerLecturas(this)">Ver Lecturas</button>
+                <button class="btn btn-primary" name="<?php  echo $row['id']; ?>" onclick="goToVerLecturas(this)"><i class="far fa-eye"></i></button>
+                <button class="btn btn-warning" name="<?php  echo $row['id']; ?>" onclick="goToModificarReportes(this)"><i class="far fa-edit text-light"></i></button>
+                <button class="btn btn-danger <?php  echo $_SESSION['user_role']=='Trabajador'?'d-none':''; ?>" name="<?php  echo $row['id']; ?>" onclick="deleteReport(this)"><i class="far fa-trash-alt"></i></button>
             </td>
     </tr>
 
@@ -61,8 +63,7 @@ include("conexion.php");
 
 </tbody>
 </table>
-<!-- <button id="proba" type="submit" class="<?php echo $row['id']; ?>"> <span class="fas fa-pencil-alt">
-        </span> Proba</button> -->
+
 
 <a href='javascript:window.print(); void 0;'>Imprimir</a>
 

@@ -49,19 +49,26 @@ include("conexion.php");
                         <div class="navbar-collapse collapse">
                             <div class="navbar-nav">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-link"><a href="vistasupervisor.php" class="active  text-danger">Inicio</a></li>
+                                    <li class="nav-link"><a href="vistasupervisor.php"
+                                            class="active  text-danger">Inicio</a></li>
                                     <li class="nav-item dropdown text-danger">
-                                        <a href="#" class="nav-link dropdown-toggle text-danger" id="navbarDropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="#" class="nav-link dropdown-toggle text-danger"
+                                            id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
                                             Reportes
                                         </a>
                                         <div class="dropdown-menu text-danger" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item text-danger" href="#mostrar" id="reporteTrabajadores">Ver
+                                            <a class="dropdown-item text-danger" href="#mostrar"
+                                                id="reporteTrabajadores">Ver
                                                 Reportes</a>
-                                            <a class="dropdown-item text-danger" href="reportesactual.php">Agregar Reportes</a>
+                                            <a class="dropdown-item text-danger" href="reportesactual.php">Agregar
+                                                Reportes</a>
                                         </div>
                                     </li>
-                                    <li class="nav-link text-danger"> <a class="text-danger" href="cerrarsesion.php">Cerrar Sesión </a> </li>
+                                    <li class="nav-link text-danger"><a class="text-danger" id="usuario1"
+                                            href="#mostrar">Usuario</a></li>
+                                    <li class="nav-link text-danger"> <a class="text-danger"
+                                            href="cerrarsesion.php">Cerrar Sesión </a> </li>
                                 </ul>
                             </div>
                         </div>
@@ -136,6 +143,11 @@ include("conexion.php");
 
 <script>
 $(document).ready(function() {
+    $('#usuario1').click(function(e) {
+        e.preventDefault();
+        $('#mostrar').empty();
+        $('#mostrar').load("mostrarusuario.php");
+    });
     $('#reporteTrabajadores').click(function(e) {
         e.preventDefault();
         $('#mostrar').empty();

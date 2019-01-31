@@ -12,7 +12,6 @@ $resultado=mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);
 $rel=mysqli_fetch_array($resultado);
-
 if($filas>0){
 	$_SESSION['user_role'] = $rel['rol'];
 	$_SESSION['user_id']=$rel['id'];
@@ -20,6 +19,8 @@ if($filas>0){
 
 	 if($rel['rol']==='Supervisor'){
 		header("location:vistasupervisor.php");
+	}else if($rel['rol']==='Administrador'){
+		header("location:vistaadministrador.php");
 	}else{ 
 		 header("location:vistatrabajador.php");
 		}

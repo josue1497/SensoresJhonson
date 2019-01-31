@@ -3,11 +3,12 @@
 <head>
 	<title>Login de usuario</title>
 	<!-- <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css"> -->
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 	<script src="librerias/jquery-3.2.1.min.js"></script>
 	<script src="js/funciones.js"></script>
 </head>
-<body>
+<body class="fondo">
     <br><br><br> 
     
 	<div class="container">
@@ -15,7 +16,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<div class="panel panel-primary">
-					<div class="panel panel-heading text-center display-4">Wharehouse Control</div>
+					<div class="panel panel-heading text-center display-4">Warehouse Control</div>
 					<div class="panel panel-body"> 
 
 						<p class="text-center p-2 ">

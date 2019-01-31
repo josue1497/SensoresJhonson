@@ -169,3 +169,36 @@ function enviarDatos(form){
 
    window.location='ver_lecturas.php?nombre='+nameR+'&comentario='+commentR+'&fecha='+dateR+'&estatus='+statR+'&recordid='+id;
 }
+
+function goToModificarReportes(element){
+    nameR=element.parentNode.parentNode.childNodes[1].innerText;
+    commentR=element.parentNode.parentNode.childNodes[7].innerText;
+    dateR=element.parentNode.parentNode.childNodes[9].innerText;
+    statR=element.parentNode.parentNode.childNodes[11].innerText;
+    arrayTemperatura=element.parentNode.parentNode.childNodes[3].value.trim();
+    arrayHumedad=element.parentNode.parentNode.childNodes[5].value.trim();
+    id=element.parentNode.parentNode.id;
+ 
+    window.location='modificarreporte.php?nombre='+nameR+'&comentario='+commentR+'&fecha='+dateR+'&estatus='+statR+'&recordid='+id;
+ }
+ function deleteReport(element){
+    recordId = element.parentNode.parentNode.id;
+    if(confirm('¿Desea Eliminar el registro seleccionado?')){
+        $.ajax({
+            type:"POST",
+            url:"eliminarreporte.php",
+            data: {id:recordId},
+            success:function(r){
+                if(r==1){                    
+                    alert('Operación Exitosa');
+                    $('#mostrar').load("reportes_trabajadores.php");
+                }else{
+                    alert('Ha ocurrido un error.' + r);
+                }
+            }
+        });      
+        console.log('borrado');
+    }else{
+
+    }
+}
