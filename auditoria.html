@@ -1,0 +1,28 @@
+<div class="container py-3">
+    <div class="row">
+        <div class="col-6 text-center">
+        <button class="btn btn-primary" id="dataUser">Usuarios</button>
+        </div>
+        <div class="col-6 text-center">
+        <button class="btn btn-warning text-light" id="dataReport">Reportes</button>
+        </div>
+    
+    </div>
+    <div class="row" id="data">
+
+    </div>
+    <script>
+        $(document).ready(function() {
+        $('#dataUser').click(function(e) {
+            e.preventDefault();
+            $('#data').empty();
+            $('#data').load("dataUser.php");
+        });
+        $('#dataReport').click(function(e) {
+            e.preventDefault();
+            $('#data').empty();
+            $('#data').load("dataReport.php");
+        });
+    });
+    </script>
+</div>

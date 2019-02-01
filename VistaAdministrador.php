@@ -11,7 +11,7 @@ include("conexion.php");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Supervisor</title>
+    <title>Administrador</title>
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jquery.bxslider.css">
@@ -67,6 +67,8 @@ include("conexion.php");
                                     </li>
                                     <li class="nav-link text-danger"><a class="text-danger" id="usuario1"
                                             href="#mostrar">Usuario</a></li>
+                                    <li class="nav-link text-danger"><a class="text-danger" id="auditoria"
+                                            href="#mostrar">Auditoria</a></li>
                                     <li class="nav-link text-danger"> <a class="text-danger"
                                             href="cerrarsesion.php">Cerrar Sesión </a> </li>
                                 </ul>
@@ -152,6 +154,11 @@ $(document).ready(function() {
         e.preventDefault();
         $('#mostrar').empty();
         $('#mostrar').load("reportes_trabajadores.php");
+    });
+    $('#auditoria').click(function(e) {
+        e.preventDefault();
+        $('#mostrar').empty();
+        $('#mostrar').load("auditoria.html");
     });
 });
 
