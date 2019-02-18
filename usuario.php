@@ -17,6 +17,18 @@ if($filas>0){
 	$_SESSION['user_id']=$rel['id'];
 	$_SESSION['usuario1'] = $rel['nombre'].' '.$rel['apellido'];
 
+	$sql = "select * from configuracion where id=1 limit 1";
+    $query_config = mysqli_query($conexion,$sql);
+
+	$row = mysqli_fetch_array($query_config);
+	
+	$_SESSION['CORREO_NOTIF']=$row['correo_notificacion'];
+	$_SESSION['TEMP_NOTIF']=$row['temperatura'];
+	$_SESSION['HUM_NOTIF']=$row['humedad'];
+
+	$_SESSION['HUM_A']='';
+	$_SESSION['TEMP_A']='';
+
 	 if($rel['rol']==='Supervisor'){
 		header("location:vistasupervisor.php");
 	}else if($rel['rol']==='Administrador'){

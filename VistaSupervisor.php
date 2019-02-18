@@ -61,6 +61,7 @@ include("conexion.php");
                                             <a class="dropdown-item text-danger" href="reportesactual.php">Agregar Reportes</a>
                                         </div>
                                     </li>
+                                    <li class="nav-link"><a href="monitoreo.php" class="active  text-danger">Monitoreo</a></li>
                                     <li class="nav-link text-danger"> <a class="text-danger" href="cerrarsesion.php">Cerrar Sesión </a> </li>
                                 </ul>
                             </div>

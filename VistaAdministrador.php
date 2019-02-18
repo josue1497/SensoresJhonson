@@ -69,6 +69,8 @@ include("conexion.php");
                                             href="#mostrar">Usuario</a></li>
                                     <li class="nav-link text-danger"><a class="text-danger" id="auditoria"
                                             href="#mostrar">Auditoria</a></li>
+                                            <li class="nav-link text-danger"><a class="text-danger" id="configuracion"
+                                            href="#mostrar">Configuracion</a></li>
                                     <li class="nav-link text-danger"> <a class="text-danger"
                                             href="cerrarsesion.php">Cerrar Sesión </a> </li>
                                 </ul>
@@ -159,6 +161,11 @@ $(document).ready(function() {
         e.preventDefault();
         $('#mostrar').empty();
         $('#mostrar').load("auditoria.html");
+    });
+    $('#configuracion').click(function(e) {
+        e.preventDefault();
+        $('#mostrar').empty();
+        $('#mostrar').load("configuracion.php");
     });
 });
 
