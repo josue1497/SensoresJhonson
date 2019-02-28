@@ -6,6 +6,7 @@ include("conexion.php");
  $correo=$_SESSION['CORREO_NOTIF'];
  $temp=(int)$_SESSION['TEMP_NOTIF'];
  $hum=(int)$_SESSION['HUM_NOTIF'];
+ $time=(int)$_SESSION['TIME_NOTIF'];
 
 
 ?>
@@ -26,6 +27,10 @@ include("conexion.php");
         <div class="form-group">
             <label for="humedad">Humedad</label>
             <input type="number" class="form-control" id="humedad" name="humedad" placeholder="Humedad" value="<?php echo $hum; ?>">
+        </div>
+        <div class="form-group">
+            <label for="temperatura">Tiempo de Evaluación</label>
+            <input type="number" class="form-control" id="tiempo" name="tiempo" value="<?php echo $time; ?>" placeholder="Tiempo de Evaluación">
         </div>
         <button type="submit" class="btn btn-primary" id="btnEnviar">Guardar</button>
     </form>

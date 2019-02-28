@@ -25,6 +25,7 @@ if($filas>0){
 	$_SESSION['CORREO_NOTIF']=$row['correo_notificacion'];
 	$_SESSION['TEMP_NOTIF']=$row['temperatura'];
 	$_SESSION['HUM_NOTIF']=$row['humedad'];
+	$_SESSION['TIME_NOTIF']=$row['minutos'];
 
 	$_SESSION['HUM_A']='';
 	$_SESSION['TEMP_A']='';

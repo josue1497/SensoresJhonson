@@ -9,7 +9,6 @@ $filas=mysqli_num_rows($resultado);
 $rel=mysqli_fetch_array($resultado);
 
 if($filas>0){
-	$_SESSION['HUM_A']=$rel['humedad'];
-	echo $rel['humedad'];
+	echo json_encode($rel);
 }
 ?>

@@ -17,7 +17,7 @@ include("conexion.php");
         <tbody>
             <?php  
 
-    $sql = "select ci, concat(nombre,' ',apellido) as nombre, correo, usuario, clave, rol, case when activo='N' then 'Inactivo' else 'Activo' end as act  from usuario;";
+    $sql = "select id,ci, concat(nombre,' ',apellido) as nombre, correo, usuario, clave, rol, case when activo='N' then 'Inactivo' else 'Activo' end as act  from usuario;";
 
     $query = mysqli_query($conexion,$sql);       
 

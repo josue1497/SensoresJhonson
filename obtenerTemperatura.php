@@ -8,6 +8,6 @@ $filas=mysqli_num_rows($resultado);
 $rel=mysqli_fetch_array($resultado);
 
 if($filas>0){
-	echo $rel['temperatura'];
+	echo json_encode($rel);
 }
 ?>
