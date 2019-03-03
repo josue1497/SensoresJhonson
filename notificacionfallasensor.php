@@ -5,10 +5,11 @@ require 'class.pop3.php';
 require_once('phpmailer.php'); 
 include("conexion.php");
 
-$sql = "SELECT humedad,temperatura, fecha FROM valores where date(fecha)=current_date order by fecha desc limit 120";
+
+$sql = "SELECT fecha FROM valores order by fecha desc limit 1";
 $query = mysqli_query($conexion, $sql);
 
-$sql_params = "SELECT correo_notificacion, password_mail, temperatura, humedad, minutos FROM configuracion WHERE id=1 LIMIT 1";
+$sql_params = "SELECT correo_notificacion, password_mail, minutos FROM configuracion WHERE id=1 LIMIT 1";
 $query_params = mysqli_query($conexion, $sql_params);
 $row_params = mysqli_fetch_array($query_params);
 
@@ -17,13 +18,13 @@ $email_to = $row_params["correo_notificacion"];
 $pass = $row_params["password_mail"];
 
 while ($row = mysqli_fetch_array($query)) {
-    $temp_max = $row["temperatura"] >= $row_params["temperatura"];
-    $hum_max = $row["humedad"] >= $row_params["humedad"];
 
+    date_default_timezone_set("America/Caracas");
+    $datetime1 = (new DateTime($row["fecha"]))->format('Y-m-d H:i:s');
+    $datetime2 = date('Y-m-d H:i:s');
+    $minutos = ceil((strtotime($datetime2)-strtotime($datetime1))/60);
 
-    if ($temp_max || $hum_max) {
-
-        $mail = new PHPMailer();
+    if ($minutos>$row_params["minutos"]) {
 
         $mail = new PHPMailer();
 
@@ -39,20 +40,21 @@ while ($row = mysqli_fetch_array($query)) {
         $mail->FromName = 'Jhonson&Jhonson';
         $mail->addAddress($email_to);
         $mail->isHTML(true);
-		$mail->Subject = 'Temperatura y/o Humedad Excedieron sus valores.';
+		$mail->Subject = 'Inconveniente con el sensor de Temperatura y Humedad';
 		
 		$body = "<h1>¡¡Alerta!!</h1><br>
-					Los valores del Sensor ha superado los valores maximos establecidos<br>
-					Se solicita revisar el estado del mismo a la brevedad posible<br>
-					Temperatura: ".$row["temperatura"].", Temperatura Permitida:".$row_params["temperatura"]." <br>
-					Humedad: ".$row["humedad"].", Humedad Permitida:".$row_params["humedad"]."";
+					El sensor ha sufrido un percance, se requiere una revision inmediata del estado del mismo";
 
         $mail->Body = $body;
-        $mail->Send();
-
+        if($mail->Send()){
+            echo 'enviado';
+        }else{
+            echo 'no enviado';
+        }
 
 		@mysqli_close($conexion);
-		break;
+        break;
     }
-}
+    }
+
  
