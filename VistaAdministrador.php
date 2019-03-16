@@ -68,7 +68,7 @@ include("conexion.php");
                                     <li class="nav-link text-danger"><a class="text-danger" id="usuario1"
                                             href="#mostrar">Usuario</a></li>
                                     <li class="nav-link text-danger"><a class="text-danger" id="auditoria"
-                                            href="#mostrar">Auditoria</a></li>
+                                            href="#mostrar">Historial</a></li>
                                             <li class="nav-link text-danger"><a class="text-danger" id="configuracion"
                                             href="#mostrar">Configuracion</a></li>
                                     <li class="nav-link text-danger"> <a class="text-danger"

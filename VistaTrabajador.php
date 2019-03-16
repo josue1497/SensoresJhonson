@@ -61,6 +61,7 @@ include("conexion.php");
                                             Reportes</a>
                                     </div>
                                 </li>
+                                <li class="nav-link"><a href="monitoreo.php" class="active  text-danger">Monitoreo</a></li>
                                 <li class="nav-link"> <a class="text-danger" href="cerrarsesion.php">Cerrar Sesión </a>
                                 </li>
                             </ul>

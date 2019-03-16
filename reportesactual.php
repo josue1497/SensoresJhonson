@@ -331,7 +331,13 @@ include("conexion.php"); ?>
                         <input type="submit" id="btnEnviar" value="Crear Reporte" class="btn btn-primary " />
                     </div>
                     <div class="form-group">
-                        <a href="<?php echo strcmp(trim($_SESSION['user_role']), 'Trabajador') == 0 ? 'vistatrabajador.php' : 'vistasupervisor.php'; ?>" class="btn btn-secondary">Volver</a>
+                        <a href="<?php 
+                    if(strcmp(trim($_SESSION['user_role']), 'Trabajador')==0){
+                        echo 'vistatrabajador.php';}
+                         else if(strcmp(trim($_SESSION['user_role']), 'Supervisor')==0){
+                             echo 'vistasupervisor.php';}else{
+                                echo 'vistaadministrador.php';
+                             }   ?>" class="btn btn-secondary">Volver</a>
                     </div>
                 </div>
             </div>
