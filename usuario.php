@@ -23,6 +23,8 @@ if($filas>0){
 	$row = mysqli_fetch_array($query_config);
 	
 	$_SESSION['CORREO_NOTIF']=$row['correo_notificacion'];
+	$_SESSION['PASS_CORREO']=$row['password_mail'];
+	$_SESSION['CORREO_TO']=$row['correo_to'];
 	$_SESSION['TEMP_NOTIF']=$row['temperatura'];
 	$_SESSION['HUM_NOTIF']=$row['humedad'];
 	$_SESSION['TIME_NOTIF']=$row['minutos'];

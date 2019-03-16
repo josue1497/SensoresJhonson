@@ -9,13 +9,14 @@ include("conexion.php");
 $sql = "SELECT fecha FROM valores order by fecha desc limit 1";
 $query = mysqli_query($conexion, $sql);
 
-$sql_params = "SELECT correo_notificacion, password_mail, minutos FROM configuracion WHERE id=1 LIMIT 1";
+$sql_params = "SELECT correo_notificacion, password_mail, minutos,correo_to FROM configuracion WHERE id=1 LIMIT 1";
 $query_params = mysqli_query($conexion, $sql_params);
 $row_params = mysqli_fetch_array($query_params);
 
 
 $email_to = $row_params["correo_notificacion"];
 $pass = $row_params["password_mail"];
+$correo_to = explode(',',$row_params["correo_to"]);
 
 while ($row = mysqli_fetch_array($query)) {
 
@@ -38,7 +39,10 @@ while ($row = mysqli_fetch_array($query)) {
         $mail->Password = $pass;
         $mail->From = $email_to;
         $mail->FromName = 'Jhonson&Jhonson';
-        $mail->addAddress($email_to);
+        foreach($correo_to as $mail_add){
+            $mail->addAddress($mail_add);
+        }
+
         $mail->isHTML(true);
 		$mail->Subject = 'Inconveniente con el sensor de Temperatura y Humedad';
 		

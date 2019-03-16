@@ -71,7 +71,7 @@ include("conexion.php");
 
         function getValueHumedadMax() {
             var value = $.ajax({
-                url: "obtenerHumedad.php",
+                url: "obtenerHumedadMax.php",
                 dataType: 'text', //indicamos que es de tipo texto plano
                 async: false //ponemos el parámetro asyn a falso
             }).responseText;
@@ -142,14 +142,14 @@ include("conexion.php");
 
                             var t = 11;
                             var humedad = this.series[0];
-                            console.log(humedad);
                             setInterval(function() {
                                 var data = getLastValueHumedad()
                                 var x = (new Date()).getTime()+t*1000, // current time
                                     y = parseInt(data.humedad);
-                                var elem = document.getElementById("h1Humedad");
+                                let elem = document.getElementById("h1Humedad");
                                 elem.innerHTML = y;
                                 elem.className = y > getValueHumedadMax() ? 'text-danger' : '';
+                                console.log(getValueHumedadMax());
                                 humedad.addPoint([x, y], true, true);
                                 t++;
                             }, 2000);
@@ -159,7 +159,7 @@ include("conexion.php");
                                 var data = getLastValueTemperatura()
                                 var x = (new Date()).getTime()+w*1000, // current time
                                     y = parseInt(data.temperatura);
-                                var elem = document.getElementById("h1Temperatura");
+                                    let elem = document.getElementById("h1Temperatura");
                                 elem.innerHTML = y;
                                 elem.className = y > getValueTemperaturaMax() ? 'text-danger' : '';
                                 temperatura.addPoint([x, y], true, true);

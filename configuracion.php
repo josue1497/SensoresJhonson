@@ -4,6 +4,8 @@ include("conexion.php");
 
 
  $correo=$_SESSION['CORREO_NOTIF'];
+ $pass=$_SESSION['PASS_CORREO'];
+ $correo_to=$_SESSION['CORREO_TO'];
  $temp=(int)$_SESSION['TEMP_NOTIF'];
  $hum=(int)$_SESSION['HUM_NOTIF'];
  $time=(int)$_SESSION['TIME_NOTIF'];
@@ -17,6 +19,20 @@ include("conexion.php");
             <label for="correo_notificacion">Correo de Notificacion</label>
             <input type="email" class="form-control" id="correo_notificacion" name="correo_notificacion" aria-describedby="emailHelp"
                 placeholder="Escriba su Correo Electronico" value="<?php echo $correo; ?>" >
+            <small id="emailHelp" class="form-text text-muted">Usted debera colocar el Correo electronico al que
+                llegaran las notificaciones.</small>
+        </div>
+        <div class="form-group">
+            <label for="pass_correo">Contraseña del Correo</label>
+            <input type="password" class="form-control" id="pass_correo" name="pass_correo" aria-describedby="emailHelp"
+                placeholder="Contraseña de su Correo" value="<?php echo $pass; ?>" >
+            <small id="emailHelp" class="form-text text-muted">Usted debera colocar el Correo electronico al que
+                llegaran las notificaciones.</small>
+        </div>
+        <div class="form-group">
+            <label for="correo_to">Correos Receptores</label>
+            <input type="text" class="form-control" id="correo_to" name="correo_to"
+                placeholder="Ingrese los correos necesarios separados por una coma (,)" value="<?php echo $correo_to; ?>" >
             <small id="emailHelp" class="form-text text-muted">Usted debera colocar el Correo electronico al que
                 llegaran las notificaciones.</small>
         </div>

@@ -70,7 +70,7 @@ include("conexion.php"); ?>
 
         function getValueHumedadMax() {
             var value = $.ajax({
-                url: "obtenerHumedad.php",
+                url: "obtenerHumedadMax.php",
                 dataType: 'text', //indicamos que es de tipo texto plano
                 async: false //ponemos el parámetro asyn a falso
             }).responseText;
