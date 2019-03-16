@@ -40,6 +40,7 @@ function insertNewRecord() {
         alert("Debes llenar todos los campos!!");
     }else {
         var datos = $('#insertForm').serialize();
+        if(validaUsuario()){
         $.ajax({
             type:"POST",
             url:"registro.php",
@@ -55,6 +56,7 @@ function insertNewRecord() {
         });
         return false;
     }
+}
 }
 
 function validaUsuario(){
@@ -72,8 +74,10 @@ function validaUsuario(){
 });
 
 if(validar!='valido'){
-    alert('Usuario Supervisor no es Valido.')
+    alert('Usuario Supervisor no es Valido.');
+    return false;
 }
+return true;
 }
 
 function editRecord(){
