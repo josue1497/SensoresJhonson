@@ -130,6 +130,7 @@ include("conexion.php");
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/funciones.js"></script>
     <script>
     wow = new WOW({
 
