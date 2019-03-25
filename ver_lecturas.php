@@ -56,9 +56,32 @@ include("conexion.php"); ?>
     <br>
     <h3 class="text-center text-muted">Trabajador: <?php echo $_GET['nombre']?></h3>
     <br>
-    <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-
-
+    <div class="row p-3">
+        <div class="col-9">
+             <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto">
+                </div>
+        </div>
+        <div class="col-3">
+                <div class="d-inline-flex d-flex flex-column">
+                    <div class="p-2">
+                        <div class="d-flex flex-column">
+                            <div class="p-2">
+                                <h2>Humedad</h2>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    <h1 id="h1Humedad">1</h1>
+                                </div>
+                                <div class="p-2">
+                                    <h3>HR</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+    </div>
+</div>
 
     <script type="text/javascript">
     Highcharts.chart('container', {
@@ -66,10 +89,10 @@ include("conexion.php"); ?>
             type: 'line'
         },
         title: {
-            text: 'Reporte de temperatura y humedad.'
+            text: 'Reporte de temperatura.'
         },
         subtitle: {
-            text: 'Lecturas de Temperatura y Humedad'
+            text: 'Lecturas de Temperatura'
         },
         xAxis: {
             categories: [],
@@ -111,19 +134,8 @@ include("conexion.php"); ?>
         credits: {
             enabled: false
         },
-        series: [{
-            name: 'Humedad',
-            data: [  <?php
-            $id=$_GET['recordid'];
-            $sql = "select humedad from reportes where id='$id'";
-            $queryTemperatura = mysqli_query($conexion,$sql);
-        while ($row = mysqli_fetch_array($queryTemperatura)){
-        ?>
-
-                <?php echo $row['humedad']; ?>
-
-                <?php } ?>
-            ]}, {
+        series: [
+            {
             name: 'Temperatura',
             data: [<?php
             $id=$_GET['recordid'];
@@ -181,5 +193,24 @@ include("conexion.php"); ?>
     <a class="btn btn-primary" href='javascript:window.print(); void 0;'>Imprimir</a>
 
 </body>
+<script>
+      var hmd=  [<?php
+            $id=$_GET['recordid'];
+            $sql = "select humedad from reportes where id='$id'";
+            $queryTemperatura = mysqli_query($conexion,$sql);
+            // $row = mysqli_fetch_array($queryTemperatura);
+            $row = mysqli_fetch_array($queryTemperatura,MYSQLI_ASSOC);
+            foreach($row as $val){
+                    $val=str_replace('[','',$val);
+                    $val=str_replace(']','',$val);
+                            echo $val;
+                      } ?>
+      ];
+
+        for (var hum in hmd){
+            document.getElementById('h1Humedad').innerText=hmd[hum];
+        }
+
+</script>
 
 </html>

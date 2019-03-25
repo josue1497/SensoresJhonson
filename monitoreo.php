@@ -105,7 +105,7 @@ include("conexion.php");
                                 <h1 id="h1Humedad" class="">1</h1>
                             </div>
                             <div class="p-2">
-                                <h3>°</h3>
+                                <h3>HR</h3>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,6 @@ include("conexion.php");
                         load: function() {
 
                             var t = 11;
-                            var humedad = this.series[0];
                             setInterval(function() {
                                 var data = getLastValueHumedad()
                                 var x = (new Date()).getTime()+t*1000, // current time
@@ -150,11 +149,10 @@ include("conexion.php");
                                 elem.innerHTML = y;
                                 elem.className = y > getValueHumedadMax() ? 'text-danger' : '';
                                 console.log(getValueHumedadMax());
-                                humedad.addPoint([x, y], true, true);
                                 t++;
                             }, 2000);
                             var w = 11;
-                            var temperatura = this.series[1];
+                            var temperatura = this.series[0];
                             setInterval(function() {
                                 var data = getLastValueTemperatura()
                                 var x = (new Date()).getTime()+w*1000, // current time
@@ -199,7 +197,7 @@ include("conexion.php");
                 },
                 yAxis: {
                     title: {
-                        text: 'Temperatura y Humedad'
+                        text: 'Temperatura'
                     },
                     plotLines: [{
                         value: 0,
@@ -217,33 +215,7 @@ include("conexion.php");
                 exporting: {
                     enabled: false
                 },
-                series: [{
-                        name: 'Humedad',
-                        data: (function() {
-                            <?php
-                            $temp_array = array();
-                            $sql = "SELECT humedad, fecha FROM valores where date(fecha)=current_date order by fecha desc limit 11";
-                            $queryHumedad = mysqli_query($conexion, $sql);
-                            $row = mysqli_fetch_array($queryHumedad);
-
-                            while ($row = mysqli_fetch_array($queryHumedad)) {
-                                $temp_array[] = $row;
-                            }
-                            ?>
-                            var result = [];
-                            var data = JSON.stringify(<?php echo json_encode($temp_array) ?>);
-                            var datos = JSON.parse(data);
-                            var time = (new Date()).getTime();
-                            for (var i = 0; i < datos.length; i++) {
-                                result.push({
-                                    x: time + i * 1000,
-                                    y: parseInt(datos[i].humedad)
-                                });
-                            }
-                            return result;
-                        }())
-
-                    },
+                series: [
                     {
                         name: 'Temperatura',
                         data: (function() {

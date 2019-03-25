@@ -54,8 +54,30 @@ include("conexion.php"); ?>
     id = data_url[4].split('=')[1].replace('%20', ' ');
 
     </script>
+    <h1 class="text-center display-4">Mencione Sus lecturas</h1>
+     <div class="row p-3">
+        <div class="col-9">
     <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-
+    </div>
+        <div class="col-3">
+                <div class="d-inline-flex d-flex flex-column">
+                    <div class="p-2">
+                        <div class="d-flex flex-column">
+                            <div class="p-2">
+                                <h2>Humedad</h2>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <div class="p-2">
+                                    <h1 id="h1Humedad">1</h1>
+                                </div>
+                                <div class="p-2">
+                                    <h3>HR</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div></div>
 
 
     <script type="text/javascript">
@@ -155,16 +177,15 @@ include("conexion.php"); ?>
        
     ?>
 
-    <h1 class="text-center display-4">Mencione Sus lecturas</h1>
     <form method="post" id="formReport">
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
                     <label for="nivel">Nivel</label>
                     <select name="nivel" class="form-control" id="nivel">
-                        <option value="BIEN">BIEN</option>
+                        <option value="OPTIMO">OPTIMO</option>
                         <option value="REGULAR">REGULAR</option>
-                        <option value="MALO">MALO</option>
+                        <option value="CRITICO">CRITICO</option>
                     </select>
                 </div>
             </div>
@@ -223,6 +244,26 @@ include("conexion.php"); ?>
         $('#report_id').val(id);
     });
     </script>
+    <script>
+      var hmd=  [<?php
+            $id=$_GET['recordid'];
+            $sql = "select humedad from reportes where id='$id'";
+            $queryTemperatura = mysqli_query($conexion,$sql);
+            // $row = mysqli_fetch_array($queryTemperatura);
+            $row = mysqli_fetch_array($queryTemperatura,MYSQLI_ASSOC);
+            foreach($row as $val){
+                    $val=str_replace('[','',$val);
+                    $val=str_replace(']','',$val);
+                            echo $val;
+                      } ?>
+      ];
+
+        for (var hum in hmd){
+            document.getElementById('h1Humedad').innerText=hmd[hum];
+        }
+
+</script>
+
 
 </body>
 

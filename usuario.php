@@ -7,7 +7,7 @@ include("conexion.php");
  $pass= $_POST['pass'];
 
 
-$consulta="SELECT * FROM usuario WHERE usuario = '$usuario' AND clave= '$pass'";
+$consulta="SELECT * FROM usuario WHERE usuario = '$usuario' AND clave= '$pass' and activo ='S'";
 $resultado=mysqli_query($conexion,$consulta);
 
 $filas=mysqli_num_rows($resultado);

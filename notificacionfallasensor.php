@@ -24,7 +24,7 @@ while ($row = mysqli_fetch_array($query)) {
     $datetime1 = (new DateTime($row["fecha"]))->format('Y-m-d H:i:s');
     $datetime2 = date('Y-m-d H:i:s');
     $minutos = ceil((strtotime($datetime2)-strtotime($datetime1))/60);
-
+    var_dump($row_params["minutos"]);
     if ($minutos>$row_params["minutos"]) {
 
         $mail = new PHPMailer();
