@@ -29,7 +29,7 @@
 							<input type="password" name="pass" id="password" class="form-control input-sm">
 							<p></p>
 						<input type="submit" id="entrarSistema" class="btn btn-primary" value="Entrar"></input>
-						<a href="registro.html" class="btn btn-danger ">Registrar</a>
+						<!-- <a href="registro.html" class="btn btn-danger ">Registrar</a> -->
 					
 						</form>
 					</div>

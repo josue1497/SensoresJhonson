@@ -12,6 +12,7 @@ include("conexion.php");
                 <th>Contraseña</th>
                 <th>Rol</th>
                 <th>Estado del Registro</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +50,9 @@ include("conexion.php");
                     <td class="act">
                         <?php echo $row['act']?>
                     </td>
+                    <td class="act">
+                        <button class="btn btn-success" onclick="reactivar('<?php echo $row['id']; ?>')">Reactivar Usuario</button>
+                    </td>
                 </form>
 
             </tr>
@@ -66,3 +70,4 @@ $(document).ready(function() {
     $('#usersTable').dataTable();
 });
 </script>
+<script src="js/funciones.js"></script>

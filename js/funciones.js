@@ -162,6 +162,23 @@ function enviarDatos(form){
         return false;
   }
 
+  function reactivar(id){
+    var datos = id;
+        $.ajax({
+            type:"POST",
+            url:"reactivarusuario.php",
+            data: {user_id:datos},
+            success:function(r){
+                if(r==1){                   
+                    alert('Usuario reactivado con Exito.');
+                }else{
+                    alert('Ha ocurrido un error.');
+                }
+            }
+        });
+        return false;
+  }
+
   function goToVerLecturas(element){
    nameR=element.parentNode.parentNode.childNodes[1].innerText;
    commentR=element.parentNode.parentNode.childNodes[7].innerText;
